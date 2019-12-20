@@ -42,9 +42,3 @@ class ProfileForm(forms.ModelForm):
         help_texts = {
             'birth': 'YYYY-MM-DD'
         }
-
-    def save(self, commit=True):
-        user = super(ProfileForm, self).save(commit=False)
-        if commit:
-            user.save()
-        return user

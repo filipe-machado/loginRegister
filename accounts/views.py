@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
 from .forms import UserForm, ProfileForm
 
 def index(request):
@@ -10,11 +11,9 @@ def index(request):
 def register(request):
     if request.method=="POST":
         user_form = UserForm(request.POST)
-        profile_form=ProfileForm(request.POST)
+        profile_form = ProfileForm(request.POST)
         if user_form.is_valid() and profile_form.is_valid():
-            profile = profile_form.save(commit=False)
-            profile.user = request.user
-            profile.save
+            profile_form.save
             user_form.save()
             username=user_form.cleaned_data.get('username')
             messages.success(request,f'Your account has been created!')
@@ -57,8 +56,8 @@ class SignUpView(View):
         return render(request, self.templateName, {'form': form, 'profile_form': profile_form}) """
 
 
-""" 
-from django.shortcuts import render,redirect
+
+""" from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, ProfileForm
@@ -73,5 +72,4 @@ def register(request):
         if user_form.is_valid() and profile_form():
             user_form.save()
             profile_form.save()
-    return render(request, 'register.html', context)
- """
+    return render(request, 'register.html', context) """
