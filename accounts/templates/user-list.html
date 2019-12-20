@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de usuários{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+{% if messages %}
+
+    {% for message in messages %}
+
+    <div role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast" style="position: absolute; top: 0; right: 0;" data-delay="2000" data-autohide="true" data-animation="true">
+            <div class="toast-body">
+                {{ message }}            
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+{% endif %}
+
+<div class="offset-1 col-10 list-div">
+
+    <h1>Lista de usuários</h1>
+
+    <form method="GET" id="search-form">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Digite um valor para buscar" aria-label="Digite um valor para buscar" aria-describedby="button-addon2" name="search" value="{{ request.GET.search }}">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon"><i class="fas fa-search" id="search-btn"></i></button>
+            </div>
+        </div>
+    </form>
+
+    <!-- <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+            <option selected>Selecione uma opção...</option>
+            <option value="1">Dia</option>
+            <option value="2">Mês</option>
+            <option value="3">Ano</option>
+            <option value="4">Nome de usuário</option>
+            <option value="5">Data/Hora</option>
+        </select>
+    </div> -->
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Usuário</th>
+                <th scope="col">Criado em</th>
+                <th scope="col">Dia</th>
+                <th scope="col">Mês</th>
+                <th scope="col">Ano</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Drop</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td scope="row">{{user.id}}</td>
+                <td scope="row">{{user.username}}</td>
+                <td scope="row">{{user.created_at}}</td>
+                <td scope="row">{{user.dataNascimento}}</td>
+                <td scope="row">{{user.username}}</td>
+                <td scope="row">{{user.username}}</td>
+                <td scope="row"><a href="edit-user/{{user.id}}"><span><i class="fas fa-edit"></i></span></a></td>
+                <td scope="row"><a href="delete-user/{{user.id}}"><span><i class="fas fa-trash"></i></span></a></td>
+                
+            </tr>
+                
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if users.has_previous %}
+                <a href="?page={{ users.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+            {% endif %}
+
+            {% if users.paginator.num_pages %}
+            <span class="current">
+                {{ users.number }} de {{ users.paginator.num_pages }}
+            </span>
+            {% endif %}
+
+            {% if users.has_next %}
+                <a href="?page={{ users.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
