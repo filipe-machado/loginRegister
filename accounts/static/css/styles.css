@@ -1,0 +1,80 @@
+@import url(https://fonts.googleapis.com/css?family=Gudea:400,700);
+
+body {
+    font-size: .8em;
+}
+
+.login, .register{
+    color: #fff;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    font-family: 'Gudea', sans-serif;
+    background: #EA5C54;
+    background: linear-gradient(135deg, #EA5C54 0%, #bb6dec 100%);
+    align-items: center;
+  }
+
+.card {
+    border-top: 2px solid #D8312A;
+    background: #35394a;
+    background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+}
+
+.login .card .btn, .register .card .btn {
+    color: #EE628C;
+}
+
+.login .btn-primary, .register .btn-primary {
+    background-color: transparent;
+    border-radius: 20px;
+    border: #EE628C 2px solid;
+}
+
+.card .btn:hover {
+    color: #fff;
+}
+
+.login .btn-primary:hover, .register .btn-primary:hover {
+    background-color: #EE628C;
+    border: #EE628C 2px solid;
+}
+
+.login .form-control, .register .form-control {
+    background-color: #35394a;
+    border: none;
+    color: #fff;
+    height: calc(1.2em + .7rem);
+    font-size: .8rem;
+}
+
+.login .form-control:focus, .register .form-control:focus {
+    background-color: #35394a;
+    color: #fff;
+    box-shadow: none;
+}
+
+.fa-trash {
+    color: #D8312A;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+ul.messages li{
+    list-style: none;
+    position: absolute;
+}
+
+.toast {
+    margin: 4.5% 9.33333%;
+    opacity: 1;
+    background-color: rgb(0, 123, 255);
+    color: #fff;
+}
+
+.step-links {
+    position: relative;
+    margin: 20px auto;
+}
