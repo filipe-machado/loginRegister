@@ -4,24 +4,21 @@ from django import forms
 from .models import Profile
 
 
-class UserForm(forms.ModelForm):
+class UserForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'password']
-        widgets = {
-            'first_name': forms.TextInput(attrs={'placeholder': 'Nome'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Sobrenome'}),
-            'username': forms.TextInput(attrs={'placeholder': 'Usuário'}),
-            'password': forms.PasswordInput(attrs={'placeholder': 'Senha'}),
+        fields = ['first_name', 'last_name', 'username', 'password1']
+
+        labels = {
+            'first_name': 'Nome',
+            'last_name': 'Sobrenome',
+            'username': 'Usuário',
+            'password1': 'Senha'
         }
 
-        help_texts = {
-            'username': ''
-        }
 
     def save(self, commit=True):
         user = super(UserForm, self).save(commit=False)
-        user.set_password(self.cleaned_data['password'])
         if commit:
             user.save()
         return user
@@ -33,12 +30,12 @@ class ProfileForm(forms.ModelForm):
         fields = ['birth']
 
         widgets = {
-            'birth': forms.DateInput(attrs={'placeholder': 'Data de nascimento'}),
+            'birth': forms.DateInput(),
         }
         labels = {
             'birth' : 'Data de nascimento'
         }
 
         help_texts = {
-            'birth': 'YYYY-MM-DD'
+            'birth': 'Formato: YYYY-MM-DD'
         }

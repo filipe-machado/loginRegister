@@ -78,3 +78,7 @@ ul.messages li{
     position: relative;
     margin: 20px auto;
 }
+
+.form-text {
+    display: none;
+}
