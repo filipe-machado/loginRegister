@@ -10,6 +10,7 @@
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}
+        {{ profile_form|crispy }}
         <input type="submit" class="btn btn-success" value="Editar usuário">
     </form>
 </div>
