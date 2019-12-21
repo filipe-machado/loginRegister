@@ -38,21 +38,18 @@ def listUser(request):
     filter = request.GET.get('filter')
     
     if search:
-        users = User.objects.filter(username__icontains=search, username=request.user)
+        users = User.objects.filter(username__icontains=search) or User.objects.filter(first_name__icontains=search)
     elif filter:
-        users = User.objects.filter(done=filter, username=request.user)
+        users = User.objects.filter(done=filter)
 
     else:
-        users_list = User.objects.all().order_by('-date_joined')#.filter(username=request.user)
-
+        users_list = User.objects.all().order_by('-date_joined')
         paginator = Paginator(users_list, 3)
-
         page = request.GET.get('page')
         users = paginator.get_page(page)
     
 
-    return render(request, 'user-list.html', 
-        {'users':users})
+    return render(request, 'user-list.html', {'users':users})
 
 
 @login_required
