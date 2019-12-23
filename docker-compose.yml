@@ -11,6 +11,7 @@ services:
     web:
         build: .
         command: ["./run_web.sh"]
+        restart: always
         volumes:
         - .:/app
         ports:
